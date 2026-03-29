@@ -1,0 +1,155 @@
+{
+  "saved": {
+    "dataflow": {
+      "url": "https://sdmx.oecd.org/public/rest/dataflow/all/all/latest",
+      "bytes": 8361777,
+      "file": "metadata/dataflow.xml"
+    },
+    "datastructure": {
+      "url": "https://sdmx.oecd.org/public/rest/datastructure/all/all/latest",
+      "bytes": 4666381,
+      "file": "metadata/datastructure.xml"
+    },
+    "codelist": {
+      "url": "https://sdmx.oecd.org/public/rest/codelist/all/all/latest",
+      "bytes": 72093799,
+      "file": "metadata/codelist.xml"
+    },
+    "conceptscheme": {
+      "url": "https://sdmx.oecd.org/public/rest/conceptscheme/all/all/latest",
+      "bytes": 1877835,
+      "file": "metadata/conceptscheme.xml"
+    },
+    "contentconstraint": {
+      "url": "https://sdmx.oecd.org/public/rest/contentconstraint/all/all/latest",
+      "bytes": 26689269,
+      "file": "metadata/contentconstraint.xml"
+    }
+  },
+  "dataflow_count": 1479,
+  "datastructure_count": 398,
+  "codelist_count": 792,
+  "conceptscheme_count": 257,
+  "contentconstraint_count": 2767,
+  "dataflow_examples": [
+    "SEEA_AEA_A",
+    "DF_SDG_GLC",
+    "DF_SDG_GLH",
+    "DSD_FUA_CLIM@DF_CLIM_PROJ",
+    "DSD_FUA_CLIM@DF_COASTAL_FLOOD",
+    "DSD_FUA_CLIM@DF_DROUGHT",
+    "DSD_FUA_CLIM@DF_FIRES",
+    "DSD_FUA_CLIM@DF_HEAT_STRESS",
+    "DSD_FUA_CLIM@DF_LAND_TEMP",
+    "DSD_FUA_CLIM@DF_PRECIP",
+    "DSD_FUA_CLIM@DF_RIVER_FLOOD",
+    "DSD_FUA_CLIM@DF_TEMPERATURES",
+    "DSD_FUA_DEMO@DF_AGE_SEX",
+    "DSD_FUA_DEMO@DF_DEPEND",
+    "DSD_FUA_DEMO@DF_ORIGIN",
+    "DSD_FUA_DIGI@DF_INTERNET_SPEED",
+    "DSD_FUA_ECO@DF_ECONOMY",
+    "DSD_FUA_ENER@DF_CDD_HDD",
+    "DSD_FUA_ENV@DF_GHG",
+    "DSD_FUA_ENV@DF_GREEN_AREA"
+  ],
+  "focus_dataflows": [
+    {
+      "id": "DSD_PDB@DF_PDB_LV",
+      "name_en": "Productivity levels",
+      "structure_ref": {}
+    },
+    {
+      "id": "DSD_PDB@DF_PDB_ULC_Q",
+      "name_en": "Productivity and unit labour costs",
+      "structure_ref": {}
+    }
+  ],
+  "request_parameter_structure": [
+    {
+      "dsd_id": "DSD_PDB",
+      "dimensions": [
+        {
+          "order": 1,
+          "id": "REF_AREA",
+          "conceptRef": null,
+          "codelist": ""
+        },
+        {
+          "order": 2,
+          "id": "FREQ",
+          "conceptRef": null,
+          "codelist": ""
+        },
+        {
+          "order": 3,
+          "id": "MEASURE",
+          "conceptRef": null,
+          "codelist": ""
+        },
+        {
+          "order": 4,
+          "id": "ACTIVITY",
+          "conceptRef": null,
+          "codelist": ""
+        },
+        {
+          "order": 5,
+          "id": "UNIT_MEASURE",
+          "conceptRef": null,
+          "codelist": ""
+        },
+        {
+          "order": 6,
+          "id": "PRICE_BASE",
+          "conceptRef": null,
+          "codelist": ""
+        },
+        {
+          "order": 7,
+          "id": "TRANSFORMATION",
+          "conceptRef": null,
+          "codelist": ""
+        },
+        {
+          "order": 8,
+          "id": "ASSET_CODE",
+          "conceptRef": null,
+          "codelist": ""
+        },
+        {
+          "order": 9,
+          "id": "CONVERSION_TYPE",
+          "conceptRef": null,
+          "codelist": ""
+        }
+      ],
+      "attributes": [
+        {
+          "id": "OBS_STATUS",
+          "conceptRef": null,
+          "assignmentStatus": "Mandatory",
+          "codelist": ""
+        },
+        {
+          "id": "UNIT_MULT",
+          "conceptRef": null,
+          "assignmentStatus": "Conditional",
+          "codelist": ""
+        },
+        {
+          "id": "BASE_PER",
+          "conceptRef": null,
+          "assignmentStatus": "Conditional",
+          "codelist": ""
+        },
+        {
+          "id": "DECIMALS",
+          "conceptRef": null,
+          "assignmentStatus": "Conditional",
+          "codelist": ""
+        }
+      ]
+    }
+  ]
+}

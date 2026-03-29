@@ -1,0 +1,12 @@
+numpy
+pandas>=2.2,<3
+matplotlib
+scipy
+scikit-learn
+requests
+pandas-datareader
+lxml
+PyPDF2
+googletrans==3.1.0a0
+pdfplumber
+plotly
