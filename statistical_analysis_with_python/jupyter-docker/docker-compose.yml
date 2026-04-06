@@ -2,8 +2,8 @@ services:
   jupyter:
     build:
       context: .
-    image: ferm-jupyter:latest
-    container_name: jupyter
+    image: statistical-analysis-jupyter:latest
+    container_name: statistical_analysis_with_python
     ports:
       - "8888:8888"
     environment:
@@ -19,3 +19,5 @@ services:
       --NotebookApp.token=${JUPYTER_TOKEN:-vscode-jupyter-token}
       --NotebookApp.password=''
       --NotebookApp.allow_origin='*'
+      --MappingKernelManager.cull_idle_timeout=0
+      --MappingKernelManager.cull_interval=0

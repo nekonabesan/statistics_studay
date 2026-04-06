@@ -6,17 +6,26 @@ WORK_DIR := $(PROJECT_ROOT)/work
 JUPYTER_TOKEN ?= vscode-jupyter-token
 DOCKER_COMPOSE ?= docker compose
 SERVICE_NAME ?= jupyter
-IMAGE_NAME ?= ferm-jupyter:latest
+IMAGE_NAME ?= statistical-analysis-jupyter:latest
 
-.PHONY: start build stop logs install innstall
+# Dockerfileビルド時に requestment.txt 経由でインストールされるパッケージ
+# パッケージを追加・削除する場合は requestment.txt を編集して make build を実行すること
+PACKAGES := \
+	numpy \
+	pandas \
+	matplotlib \
+	japanize-matplotlib \
+	scipy \
+	scikit-learn \
+	requests \
+	pandas-datareader \
+	lxml \
+	PyPDF2 \
+	googletrans \
+	pdfplumber \
+	plotly
 
-# Allows: make install numpy
-ifneq ($(filter install innstall,$(MAKECMDGOALS)),)
-  MODULE_FROM_GOAL := $(word 2,$(MAKECMDGOALS))
-  ifneq ($(MODULE_FROM_GOAL),)
-    $(eval $(MODULE_FROM_GOAL):;@:)
-  endif
-endif
+.PHONY: start build stop logs
 
 start:
 	@mkdir -p "$(WORK_DIR)"
@@ -42,18 +51,3 @@ stop:
 
 logs:
 	@cd "$(SCRIPT_DIR)" && $(DOCKER_COMPOSE) logs -f $(SERVICE_NAME)
-
-install:
-	@module="$(or $(MODULE),$(MODULE_FROM_GOAL))"; \
-	if [ -z "$$module" ]; then \
-		echo "Usage: make install <module_name>"; \
-		exit 1; \
-	fi; \
-	cd "$(SCRIPT_DIR)"; \
-	if ! $(DOCKER_COMPOSE) ps --status running --services | grep -q "^$(SERVICE_NAME)$$"; then \
-		echo "Service $(SERVICE_NAME) is not running. Run 'make start' first."; \
-		exit 1; \
-	fi; \
-	$(DOCKER_COMPOSE) exec -T $(SERVICE_NAME) pip install --no-cache-dir "$$module"
-
-innstall: install
