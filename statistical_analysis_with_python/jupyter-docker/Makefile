@@ -8,24 +8,10 @@ DOCKER_COMPOSE ?= docker compose
 SERVICE_NAME ?= jupyter
 IMAGE_NAME ?= statistical-analysis-jupyter:latest
 
-# Dockerfileビルド時に requestment.txt 経由でインストールされるパッケージ
-# パッケージを追加・削除する場合は requestment.txt を編集して make build を実行すること
-PACKAGES := \
-	numpy \
-	pandas \
-	matplotlib \
-	japanize-matplotlib \
-	scipy \
-	scikit-learn \
-	requests \
-	pandas-datareader \
-	lxml \
-	PyPDF2 \
-	googletrans \
-	pdfplumber \
-	plotly
+# 依存関係は pyproject.toml / uv.lock で管理する
+# 追加・更新時は pyproject.toml を編集し、make lock 実行後に make build する
 
-.PHONY: start build stop logs
+.PHONY: start build stop logs lock
 
 start:
 	@mkdir -p "$(WORK_DIR)"
@@ -51,3 +37,11 @@ stop:
 
 logs:
 	@cd "$(SCRIPT_DIR)" && $(DOCKER_COMPOSE) logs -f $(SERVICE_NAME)
+
+lock:
+	@cd "$(SCRIPT_DIR)"; \
+	if ! docker image inspect "$(IMAGE_NAME)" >/dev/null 2>&1; then \
+		echo "Image $(IMAGE_NAME) not found. Running make build..."; \
+		$(MAKE) build; \
+	fi; \
+	docker run --rm -v "$$PWD:/work" -w /work "$(IMAGE_NAME)" uv lock

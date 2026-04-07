@@ -17,10 +17,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 USER ${NB_UID}
 
-# Python パッケージ定義をコピーして一括インストール
-COPY requestment.txt /tmp/requestment.txt
+# uvプロジェクト定義とロックファイルをコピーして一括インストール
+COPY pyproject.toml uv.lock /tmp/uvproj/
 
-RUN uv pip install --no-cache --system -r /tmp/requestment.txt
+RUN cd /tmp/uvproj \
+	&& uv export --frozen --no-dev --format requirements-txt -o /tmp/requirements.lock.txt \
+	&& uv pip install --system -r /tmp/requirements.lock.txt
 
 # matplotlib のフォントキャッシュを再生成し、IPAexGothic が見えることを確認
 RUN rm -rf /home/${NB_USER}/.cache/matplotlib \
